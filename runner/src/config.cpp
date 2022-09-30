@@ -36,13 +36,61 @@ bool Config::contains(const std::string& key) const
 }
 
 bool Config::as_int(const std::string& key, int& value) const {
+	int file_value;
+	//find the key
+	
+	if(!config_file.is_open()) return false;
+	std::string content;
+	
+	while (!config_file.eof()){
+		
+		std::getline(&config_file, content);
+		if(content.find(key)){ //Do I have to dereference key?
+			
+			//Edit value in here
+			value = file_value; //Overwrite where the reference "points" to
+		}	
+	}
+	
 	return false;
 }
 
 bool Config::as_float(const std::string& key, float& value) const {
+	float file_value;
+	//find the key
+	
+	if(!config_file.is_open()) return false;
+	std::string content;
+	
+	while (!config_file.eof()){
+		
+		std::getline(&config_file, content);
+		if(content.find(key)){ //Do I have to dereference key?
+			
+			//Edit value in here
+			value = file_value; //Overwrite where the reference "points" to
+		}	
+	}
+	
 	return false;
 }
 
 bool Config::as_string(const std::string& key, std::string& value) const {
+	std::string file_value;
+	//find the key
+	
+	if(!config_file.is_open()) return false;
+	std::string content;
+	
+	while (!config_file.eof()){
+		
+		std::getline(&config_file, content);
+		if(content.find(key)){ //Do I have to dereference key?
+			
+			//Edit value in here
+			value = file_value; //Overwrite where the reference "points" to
+		}	
+	}
+	
 	return false;
 }
