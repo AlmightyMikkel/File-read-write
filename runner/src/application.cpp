@@ -8,15 +8,6 @@ namespace runner
    void Application::run()
    {
 
-  
-
-      const sf::VideoMode mode{ 1280, 720 };
-      const sf::Uint32 flags = sf::Style::Titlebar | sf::Style::Close;
-      m_window.create(mode, "pineapple", flags);
-      if (!m_window.isOpen() || !enter()) {
-         return;
-      }
-
       if (!font.loadFromFile("assets/Arialn.ttf")) {
           return;
       }
@@ -35,7 +26,17 @@ namespace runner
           text.setString("Failed to open file");
       }
 
+      int& window_width, window_height;
+      
+      file.as_int("window_width", window_width);
+      file.as_int("window_height", window_height);
 
+      const sf::VideoMode mode{ window_width, window_height };
+      const sf::Uint32 flags = sf::Style::Titlebar | sf::Style::Close;
+      m_window.create(mode, "pineapple", flags);
+      if (!m_window.isOpen() || !enter()) {
+         return;
+      }
 
       m_window.setKeyRepeatEnabled(false);
       while (m_window.isOpen()) {
