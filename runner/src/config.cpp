@@ -26,7 +26,7 @@ bool Config::contains(const std::string& key) const
 	std::string content;
 	while (!config_file.eof()) {
 
-		std::getline(config_file, content);
+		std::getline(&config_file, content); //Not sure if I can just dereference the file and it would work?
 
 		if (content == key) {
 			return true;
