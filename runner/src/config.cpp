@@ -94,3 +94,4 @@ bool Config::as_string(const std::string& key, std::string& value) const {
 	
 	return false;
 }
+
