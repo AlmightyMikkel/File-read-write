@@ -26,7 +26,7 @@ namespace runner
           text.setString("Failed to open file");
       }
 
-      int& window_width, window_height;
+      int window_width, window_height;
       
       file.as_int("window_width", window_width);
       file.as_int("window_height", window_height);
