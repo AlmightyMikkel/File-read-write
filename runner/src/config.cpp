@@ -21,7 +21,7 @@ bool Config::load(const std::string& filename) {
 		std::getline(config_stream, content);
 		
 
-		delimPos = std::string.find(':');
+		delimPos = content.find(':');
 		pair.key = content.substr(0, delimPos);
 		pair.value = content.substr(delimPos + 1);
 		
