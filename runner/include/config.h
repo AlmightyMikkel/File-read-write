@@ -2,12 +2,6 @@
 #include <string>
 #include <unordered_map>
 
-struct Config_pair {
-	std::string key;
-	std::string value;
-	
-};
-
 
 class Config {
 public:
@@ -19,6 +13,5 @@ public:
 	bool as_string(const std::string& key, std::string& value) const;
 private:
 	std::ifstream config_stream;
-	std::unordered_map config_container;
-
+	std::unordered_map<std::string, std::string> config_container;
 };
