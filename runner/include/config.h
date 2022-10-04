@@ -1,5 +1,6 @@
 #include <fstream>
 #include <string>
+#include <unordered_map>
 
 class Config {
 public:
@@ -11,6 +12,7 @@ public:
 	bool as_string(const std::string& key, std::string& value) const;
 	void test();
 private:
-	std::ifstream& config_file;
+	std::ifstream config_stream;
+	std::unordered_map config_container;
 
 };
