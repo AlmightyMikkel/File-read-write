@@ -36,7 +36,7 @@ bool Config::load(const std::string& filename) {
 
 bool Config::contains(const std::string& key) const {
 	for (auto& pair : config_container) {
-		if(pair.key == key) return true;
+		if(pair.first == key) return true;
 	}
 	return false;
 }
@@ -44,8 +44,8 @@ bool Config::contains(const std::string& key) const {
 bool Config::as_int(const std::string& key, int& value) const {
 	
 	for (auto& pair : config_container){
-		if(pair.key == key){
-			value = std::stoi(pair.value);
+		if(pair.first == key){
+			value = std::stoi(pair.second);
 			return true;
 		}
 	}
@@ -55,8 +55,8 @@ bool Config::as_int(const std::string& key, int& value) const {
 
 bool Config::as_float(const std::string& key, float& value) const {
 	for (auto& pair : config_container){
-		if(pair.key == key){
-			value = std::stof(pair.value);
+		if(pair.first == key){
+			value = std::stof(pair.second);
 			return true;
 		}
 	}
@@ -65,8 +65,8 @@ bool Config::as_float(const std::string& key, float& value) const {
 
 bool Config::as_string(const std::string& key, std::string& value) const {
 	for (auto& pair : config_container){
-		if(pair.key == key){
-			value = spair.value;
+		if(pair.first == key){
+			value = spair.second;
 			return true;
 		}
 	}
