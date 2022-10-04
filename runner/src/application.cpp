@@ -19,7 +19,7 @@ namespace runner
       text.setStyle(sf::Text::Bold);
       text.setPosition(400, 50);
 
-      if (file.load("./assets/config.txt")) {
+      if (config.load("./assets/config.txt")) {
           text.setString("Opened file");
       }
       else {
@@ -28,8 +28,8 @@ namespace runner
 
       int window_width, window_height;
       
-      file.as_int("window_width", window_width);
-      file.as_int("window_height", window_height);
+      config.as_int("window_width", window_width);
+      config.as_int("window_height", window_height);
 
       const sf::VideoMode mode{ window_width, window_height };
       const sf::Uint32 flags = sf::Style::Titlebar | sf::Style::Close;
