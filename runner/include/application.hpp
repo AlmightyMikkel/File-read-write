@@ -36,6 +36,6 @@ namespace runner
       sf::Vector2f     m_mouse_position;
       sf::Text         text;
       sf::Font         font;
-      Config           file;
+      Config           config;
    };
 } // !runner
