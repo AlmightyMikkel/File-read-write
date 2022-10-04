@@ -1,5 +1,7 @@
 #include "config.h"
 
+//I want to implement throw expections
+
 bool Config::load(const std::string& filename) {
 	
 	size_t delimPos{};
@@ -7,6 +9,7 @@ bool Config::load(const std::string& filename) {
 	
 	
 	config_stream.open(filename);
+	
 	if (!config_stream.is_open()) {
 		return false;
 	} 
@@ -24,17 +27,17 @@ bool Config::load(const std::string& filename) {
 		
 		config_container.insert({pair.key, pair.value});
 		
-		
 	}
 	
-	
+	//Should I check the size of the stream and compare it to the container? Would the size be the same if everything got correctly "transfered"?
 	return true;
 }
 
 
-bool Config::contains(const std::string& key) const
-{
-
+bool Config::contains(const std::string& key) const {
+	for (auto& pair : config_container) {
+		if(pair.key == key) return true;
+	}
 	return false;
 }
 
