@@ -37,7 +37,7 @@ namespace runner
                           
       const sf::VideoMode mode{ window_width, window_height };
       const sf::Uint32 flags = sf::Style::Titlebar | sf::Style::Close;
-      m_window.create(mode, "pineapple", flags);
+      m_window.create(mode, text.getString(), flags);
       if (!m_window.isOpen() || !enter()) {
          return;
       }
