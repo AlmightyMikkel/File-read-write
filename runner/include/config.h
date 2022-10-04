@@ -2,6 +2,13 @@
 #include <string>
 #include <unordered_map>
 
+struct Config_pair {
+	std::string key;
+	std::string value;
+	
+};
+
+
 class Config {
 public:
 	Config() = default;
@@ -10,7 +17,6 @@ public:
 	bool as_int(const std::string& key, int& value) const;
 	bool as_float(const std::string& key, float& value) const;
 	bool as_string(const std::string& key, std::string& value) const;
-	void test();
 private:
 	std::ifstream config_stream;
 	std::unordered_map config_container;
