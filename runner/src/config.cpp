@@ -1,75 +1,76 @@
 #include "config.h"
 
-//I want to implement throw expections
-
 bool Config::load(const std::string& filename) {
-	
-	size_t delimPos{};
-	std::string content;
-	
-	
 	config_stream.open(filename);
-	
+	std::string content;
+	size_t delimPos{};
+
 	if (!config_stream.is_open()) {
 		return false;
 	} 
-	
-	while (!config_stream.eof()){
-		
-		Config_pair pair;
-		
+
+	while (!config_stream.eof()) {
+		std::string key, value;
 		std::getline(config_stream, content);
 		
-
-		delimPos = content.find(':');
-		pair.key = content.substr(0, delimPos);
-		pair.value = content.substr(delimPos + 1);
+		delimPos = content.find(":");
+		key = content.substr(0, delimPos);
+		value = content.substr(delimPos + 1);
 		
-		config_container.insert({pair.key, pair.value});
-		
+		config_container.insert({ key, value });
 	}
 	
-	//Should I check the size of the stream and compare it to the container? Would the size be the same if everything got correctly "transfered"?
 	return true;
+
 }
 
-
-bool Config::contains(const std::string& key) const {
+bool Config::contains(const std::string& key) const
+{
 	for (auto& pair : config_container) {
-		if(pair.first == key) return true;
+		if (pair.first == key) return true;
 	}
+
 	return false;
 }
 
 bool Config::as_int(const std::string& key, int& value) const {
-	
-	for (auto& pair : config_container){
-		if(pair.first == key){
-			value = std::stoi(pair.second);
+		
+	for (auto& [_key, _value] : config_container) {
+
+		if (_key == key) {
+			value = std::stoi(_value);
 			return true;
 		}
+
 	}
-	
+
 	return false;
 }
 
 bool Config::as_float(const std::string& key, float& value) const {
-	for (auto& pair : config_container){
-		if(pair.first == key){
-			value = std::stof(pair.second);
+	for (auto& [_key, _value] : config_container) {
+
+		if (_key == key) {
+			value = std::stof(_value);
 			return true;
 		}
+
 	}
+
 	return false;
+	
 }
 
 bool Config::as_string(const std::string& key, std::string& value) const {
-	for (auto& pair : config_container){
-		if(pair.first == key){
-			value = spair.second;
+	for (auto& [_key, _value] :config_container) {
+
+		if (_key == key) {
+			value = _value;
 			return true;
 		}
+
 	}
+
 	return false;
 }
 
