@@ -12,25 +12,29 @@ namespace runner
           return;
       }
 
+      if (config.load("./assets/config.txt")) {
+          std::string title;
+          if (config.contains("window_title")) config.as_string("windows_title", title);
+          text.setString(title);
+      }
+      else {
+          text.setString("Failed to open file");
+      }
+      
+
+      int window_width, window_height;
+      
+      if (config.contains("window_width")) config.as_int("window_width", window_width);
+      if (config.contains("window_height")) config.as_int("window_height", window_height);
+
+                          
       text.setFont(font);
-      text.setString("TEST");
       text.setCharacterSize(24);
       text.setFillColor(sf::Color::Green);
       text.setStyle(sf::Text::Bold);
       text.setPosition(400, 50);
 
-      if (config.load("./assets/config.txt")) {
-          text.setString("Opened file");
-      }
-      else {
-          text.setString("Failed to open file");
-      }
-
-      int window_width, window_height;
-      
-      config.as_int("window_width", window_width);
-      config.as_int("window_height", window_height);
-
+                          
       const sf::VideoMode mode{ window_width, window_height };
       const sf::Uint32 flags = sf::Style::Titlebar | sf::Style::Close;
       m_window.create(mode, "pineapple", flags);
