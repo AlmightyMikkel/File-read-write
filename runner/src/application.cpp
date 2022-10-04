@@ -15,6 +15,7 @@ namespace runner
       if (config.load("./assets/config.txt")) {
           std::string title;
           if (config.contains("window_title")) config.as_string("windows_title", title);
+         //Add something IF container doesnt have windows_title
           text.setString(title);
       }
       else {
@@ -23,7 +24,7 @@ namespace runner
       
 
       int window_width, window_height;
-      
+      //Have an else if config doenst contain!
       if (config.contains("window_width")) config.as_int("window_width", window_width);
       if (config.contains("window_height")) config.as_int("window_height", window_height);
 
