@@ -1,0 +1,4 @@
+window_title:This is my game
+window_width:1000
+window_height:1000
+ball_speed:1
