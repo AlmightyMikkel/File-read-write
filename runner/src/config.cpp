@@ -1,97 +1,79 @@
 #include "config.h"
 
 bool Config::load(const std::string& filename) {
-	config_file.open(filename);
-	if (!config_file.is_open()) {
+	config_stream.open(filename);
+	std::string content;
+	size_t delimPos{};
+
+	if (!config_stream.is_open()) {
 		return false;
 	} 
+
+	while (!config_stream.eof()) {
+		std::string key, value;
+		std::getline(config_stream, content);
+		
+		delimPos = content.find(":");
+		key = content.substr(0, delimPos);
+		value = content.substr(delimPos + 1);
+		
+		config_container.insert({ key, value });
+	}
+	
 	return true;
-}
-//Testing if std::getline messes up because of function const; Answer: it does!
-void Config::test() {
-	if (!config_file.is_open())
-	{
 
-	}
-	std::string content;
-	while (!config_file.eof()) {
-		std::getline(config_file, content);
-
-	}
 }
 
 bool Config::contains(const std::string& key) const
 {
-	if (!config_file.is_open()) return false;
-	std::string content;
-	while (!config_file.eof()) {
+	for (const auto& pair : config_container) {
 
-		std::getline(&config_file, content); //Not sure if I can just dereference the file and it would work?
-
-		if (content == key) {
-			return true;
-		}
+		if (pair.first == key) return true;
 	}
+
 	return false;
 }
 
 bool Config::as_int(const std::string& key, int& value) const {
-	int file_value;
-	//find the key
-	
-	if(!config_file.is_open()) return false;
-	std::string content;
-	
-	while (!config_file.eof()){
 		
-		std::getline(&config_file, content);
-		if(content.find(key)){ //Do I have to dereference key?
-			
-			//Edit value in here
-			value = file_value; //Overwrite where the reference "points" to
-		}	
+	for (const auto& [_key, _value] : config_container) {
+
+		if (_key == key) {
+			value = std::stoi(_value);
+			return true;
+		}
+
 	}
-	
+
 	return false;
 }
 
 bool Config::as_float(const std::string& key, float& value) const {
-	float file_value;
-	//find the key
-	
-	if(!config_file.is_open()) return false;
-	std::string content;
-	
-	while (!config_file.eof()){
-		
-		std::getline(&config_file, content);
-		if(content.find(key)){ //Do I have to dereference key?
+
+	for (const auto& [_key, _value] : config_container) {
+
+		if (_key == key) {
+			value = std::stof(_value);
+			return true;
+		}
 			
-			//Edit value in here
-			value = file_value; //Overwrite where the reference "points" to
-		}	
 	}
-	
+
 	return false;
+	
 }
 
 bool Config::as_string(const std::string& key, std::string& value) const {
-	std::string file_value;
-	//find the key
-	
-	if(!config_file.is_open()) return false;
-	std::string content;
-	
-	while (!config_file.eof()){
-		
-		std::getline(&config_file, content);
-		if(content.find(key)){ //Do I have to dereference key?
-			
-			//Edit value in here
-			value = file_value; //Overwrite where the reference "points" to
-		}	
+
+	for (const auto& [_key, _value] :config_container) {
+
+		if (_key == key) {
+			value = _value;
+			return true;
+		}
+
 	}
-	
+
 	return false;
 }
 

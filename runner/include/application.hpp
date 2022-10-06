@@ -4,6 +4,7 @@
 
 #include "batch.hpp"
 #include "config.h"
+#include "object.h"
 
 namespace runner
 {
@@ -34,8 +35,10 @@ namespace runner
       sf::Clock        m_clock;
       sf::Time         m_deltatime;
       sf::Vector2f     m_mouse_position;
+      sf::Vector2i     screen_size;
       sf::Text         text;
       sf::Font         font;
-      Config           file;
+      Object           ball;
+      Config           config;
    };
 } // !runner

@@ -1,10 +1,1 @@
-﻿  application.cpp
-  batch.cpp
-  config.cpp
-  main.cpp
-\\Mac\Home\Desktop\pineapple\runner\src\main.cpp(7,1): error C2280: 'runner::Application::Application(void)': attempting to reference a deleted function
-\\Mac\Home\Desktop\pineapple\runner\include\application.hpp(13): message : see declaration of 'runner::Application::Application'
-\\Mac\Home\Desktop\pineapple\runner\include\application.hpp(13,7): message : 'runner::Application::Application(void)': function was implicitly deleted because a data member invokes a deleted or inaccessible function 'Config::Config(void)'
-\\Mac\Home\Desktop\pineapple\runner\include\config.h(6,2): message : 'Config::Config(void)': function was implicitly deleted because 'Config' has an uninitialized data member 'Config::config_file' of reference type
-\\Mac\Home\Desktop\pineapple\runner\include\config.h(14): message : see declaration of 'Config::config_file'
-  Generating Code...
+﻿  runner.vcxproj -> C:\Users\kaktu\OneDrive\Skrivebord\File-read-write-main\build\runner.debug.exe

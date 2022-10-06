@@ -1,42 +1,51 @@
 // application.cpp
 
 #include "application.hpp"
-#include <string>
+
+
+//How do I send the window size to the object so that I can either warp or contain the ball?
+//Do I need some backup things for the .contains and .as_"    " in case the bool is false?
+//Does .as_string turn back "" or did I fuck up?
+
+
 
 namespace runner
 {
    void Application::run()
    {
 
-      if (!font.loadFromFile("assets/Arialn.ttf")) {
-          return;
-      }
+       if (!font.loadFromFile("assets/Arialn.ttf")) {
+           return;
+       }
 
-      text.setFont(font);
-      text.setString("TEST");
-      text.setCharacterSize(24);
-      text.setFillColor(sf::Color::Green);
-      text.setStyle(sf::Text::Bold);
-      text.setPosition(400, 50);
+       if (config.load("./assets/config.txt")) {
+           std::string title;
+           if (config.contains("window_title")) config.as_string("window_title", title);
+           //Add something IF container doesnt have window_title
+           text.setString(title);
+       }
+       else {
+           text.setString("Failed to open file");
+       }
 
-      if (file.load("./assets/config.txt")) {
-          text.setString("Opened file");
-      }
-      else {
-          text.setString("Failed to open file");
-      }
+       //Have an else if config doenst contain!
+       if (config.contains("window_width")) config.as_int("window_width", screen_size.x);
+       if (config.contains("window_height")) config.as_int("window_height", screen_size.y);
 
-      int window_width, window_height;
-      
-      file.as_int("window_width", window_width);
-      file.as_int("window_height", window_height);
 
-      const sf::VideoMode mode{ window_width, window_height };
-      const sf::Uint32 flags = sf::Style::Titlebar | sf::Style::Close;
-      m_window.create(mode, "pineapple", flags);
-      if (!m_window.isOpen() || !enter()) {
-         return;
-      }
+       text.setFont(font);
+       text.setCharacterSize(24);
+       text.setFillColor(sf::Color::Green);
+       text.setStyle(sf::Text::Bold);
+       text.setPosition(400, 50);
+
+
+       const sf::VideoMode mode{(unsigned)screen_size.x, (unsigned)screen_size.y};
+       const sf::Uint32 flags = sf::Style::Titlebar | sf::Style::Close;
+       m_window.create(mode, text.getString(), flags);
+       if (!m_window.isOpen() || !enter()) {
+           return;
+       }
 
       m_window.setKeyRepeatEnabled(false);
       while (m_window.isOpen()) {
@@ -81,6 +90,7 @@ namespace runner
    bool Application::update()
    {
       m_deltatime = m_clock.restart();
+      ball.update({screen_size});
 
       return m_running;
    }
@@ -89,14 +99,10 @@ namespace runner
    {
       m_batch.clear();
       { 
-         // note: draw a white line from the center of the screen 
-         //       to the current mouse position
-         sf::Vector2f center_screen{ 640.0f, 360.0f };
-         m_batch.draw_line(center_screen, m_mouse_position, 1.0f, sf::Color::White);
-
-         // note: draw a small green circle around the current 
-         //       mouse position
-         m_batch.draw_circle(m_mouse_position, 15.0f, 12, 1.0f, sf::Color::Green);
+          m_batch.draw_circle(ball.get_position(), 
+                              ball.get_radius(), 
+                              ball.get_sections(), 
+                              ball.get_color());
       }
       
       m_window.clear(sf::Color{ 0x44, 0x55, 0x66, 0xff });

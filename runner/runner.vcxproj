@@ -106,11 +106,13 @@
     <ClCompile Include="src\batch.cpp" />
     <ClCompile Include="src\config.cpp" />
     <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\object.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\application.hpp" />
     <ClInclude Include="include\batch.hpp" />
     <ClInclude Include="include\config.h" />
+    <ClInclude Include="include\object.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
