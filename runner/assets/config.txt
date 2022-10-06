@@ -1,5 +1,4 @@
-window_title:Hello world!
+window_title:This is my game
 window_width:1000
 window_height:1000
-music_volume:1
-ball_speed:10
+ball_speed:1
