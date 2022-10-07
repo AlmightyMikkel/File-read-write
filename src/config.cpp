@@ -1,7 +1,5 @@
 #include "config.h"
 
-//Add Const to all the for auto!
-
 bool Config::load(const std::string& filename) {
 	config_stream.open(filename);
 	std::string content;
