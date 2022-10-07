@@ -4,9 +4,6 @@
 
 //Do I need some backup things for the .contains and .as_"    " in case the bool is false?
 
-
-
-
 namespace runner
 {
     void Application::run()
