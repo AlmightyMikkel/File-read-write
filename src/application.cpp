@@ -2,10 +2,7 @@
 
 #include "application.hpp"
 
-
-//How do I send the window size to the object so that I can either warp or contain the ball?
 //Do I need some backup things for the .contains and .as_"    " in case the bool is false?
-//Does .as_string turn back "" or did I fuck up?
 
 
 
