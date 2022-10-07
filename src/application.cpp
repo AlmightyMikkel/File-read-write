@@ -42,19 +42,7 @@ namespace runner
             while (m_window.isOpen()) {
                 sf::Event event;
                 while (m_window.pollEvent(event)) {
-                    if (event.type == sf::Event::MouseMoved) {
-                        on_mouse_move({ float(event.mouseMove.x), float(event.mouseMove.y) });
-                    }
-                    else if (event.type == sf::Event::MouseButtonPressed) {
-                        on_button_pressed(event.mouseButton.button);
-                    }
-                    else if (event.type == sf::Event::MouseButtonReleased) {
-                        on_button_released(event.mouseButton.button);
-                    }
-                    else if (event.type == sf::Event::KeyPressed) {
-                        on_key_pressed(event.key.code);
-                    }
-                    else if (event.type == sf::Event::Closed) {
+                    if (event.type == sf::Event::Closed) {
                         m_window.close();
                     }
                 }
@@ -103,10 +91,6 @@ namespace runner
       m_window.display();
    }
 
-   void Application::on_mouse_move(const sf::Vector2f &position) 
-   {
-      m_mouse_position = position;
-   }
 
    void Application::on_key_pressed(const sf::Keyboard::Key key)
    {
@@ -115,15 +99,4 @@ namespace runner
       }
    }
 
-   void Application::on_key_released(const sf::Keyboard::Key key)
-   {
-   }
-
-   void Application::on_button_pressed(const  sf::Mouse::Button button)
-   {
-   }
-
-   void Application::on_button_released(const sf::Mouse::Button button)
-   {
-   }
 } // !runner
