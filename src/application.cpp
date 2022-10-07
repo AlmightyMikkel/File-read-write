@@ -13,7 +13,6 @@ namespace runner
             return;
         }
 
-
         if (config.load("./assets/config.txt")) {
             std::string title;
             if (config.contains("window_title")) config.as_string("window_title", title);
