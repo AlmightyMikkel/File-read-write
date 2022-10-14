@@ -2,8 +2,6 @@
 
 #include "application.hpp"
 
-//Do I need some backup things for the .contains and .as_"    " in case the bool is false?
-
 namespace runner
 {
     void Application::run()
@@ -20,7 +18,7 @@ namespace runner
                 text.setString("Failed to open file");
             }
             text.setString(title);
-            //Have an else if config doenst contain!
+
             if (config.contains("window_width")) config.as_int("window_width", screen_size.x);
             if (config.contains("window_height")) config.as_int("window_height", screen_size.y);
 
